@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Job Market Prediction</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Job Market Prediction</h1>
+        <form action="/predict" method="POST">
+            <div class="mb-3">
+                <label for="feature1" class="form-label">Age</label>
+                <input type="number" id="feature1" name="feature1" class="form-control" placeholder="Enter your age" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="feature2" class="form-label">Experience (in years)</label>
+                <input type="number" id="feature2" name="feature2" class="form-control" placeholder="Enter years of experience" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="feature3" class="form-label">Qualification (M.Sc IT)</label>
+                <select id="feature3" name="feature3" class="form-select" required>
+                    <option value="">Select qualification</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="feature4" class="form-label">Skills (Python)</label>
+                <select id="feature4" name="feature4" class="form-select" required>
+                    <option value="">Select skills</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="alert alert-info mt-4" role="alert">
+                <h2>Prediction: {{ prediction }}</h2>
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
